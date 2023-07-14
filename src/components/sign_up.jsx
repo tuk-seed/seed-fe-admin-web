@@ -4,7 +4,7 @@ import { ResponsiveWrapper } from '../hoc';
 function signup() {
   return (
     <h1 className="text-3xl font-bold">
-      signup
+      this is the sign_up page 
     </h1>
   )
 }
