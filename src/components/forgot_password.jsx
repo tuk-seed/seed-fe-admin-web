@@ -4,7 +4,7 @@ import { ResponsiveWrapper } from '../hoc';
 function forgot_password() {
   return (
     <h1 className="text-3xl font-bold">
-      Forgot password
+      forgot password
     </h1>
   )
 }
