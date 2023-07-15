@@ -24,6 +24,6 @@ jobs:
     - name: Install dependencies
       run: npm install --passWithNoTests  
     - name: Run unit tests
-      run: npm unit --passWithNoTests
+      run: npm run unit --passWithNoTests
       env:
         CI: true
