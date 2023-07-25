@@ -11,11 +11,12 @@ import Login from './components/login'
 import Sign_up from './components/sign_up'
 import Overview_payments from './components/overview_payments'
 import Transactions from './components/transactions'
+import { UserData } from "./Data";
+import { useState } from "react";
+
 
 
 const App = () => {
-
-
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -39,6 +40,33 @@ const App = () => {
   
     console.log(formData);
   };
+  
+  const navigate = useNavigate()
+  const [userData, setUserData] = useState({
+    labels: UserData.map((data) => data.day),
+    datasets: [
+      {
+        label: "Enery (KW)",
+        data: UserData.map((data) => data.KW),
+        backgroundColor: [
+          "#f3ba2f"
+        ],
+        borderColor: "black",
+        // borderWidth: 0.1,
+        barThickness: 30,
+      },
+    ],
+  });
+
+  const overViewOnClick = () => {
+    navigate('/home');
+
+  }
+  const overViewOnClickMsg = () => {
+    navigate('/inbox');
+
+  }
+
   return (
     <Routes>
       <Route path='login_landing_page' element={<Login_landing_page/>} />
@@ -48,7 +76,7 @@ const App = () => {
       <Route path='home' element={<Home/>} />
       <Route path='inbox' element={<Inbox />} />
       <Route path='login' element={<Login/>} />
-      <Route path='overview_payments' element={<Overview_payments/>} />
+      <Route path='overview_payments' element={<Overview_payments chartData={userData} overViewOnClick = {overViewOnClick} msgOnClick = {overViewOnClickMsg} />} />
       <Route path='transaction' element={<Transactions/>} />
       <Route path='/' element={<Sign_up handleSubmit = {handleSubmit} handleChange = {handleChange} formData = {formData}/>} />
     </Routes>
