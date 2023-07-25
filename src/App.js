@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import Current_load from './components/current_load'
 import Customer_queue from './components/customer_queue'
@@ -13,6 +14,31 @@ import Transactions from './components/transactions'
 
 
 const App = () => {
+
+
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    agreeToTerms: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const fieldValue = type === 'checkbox' ? checked : value;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: fieldValue,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    console.log(formData);
+  };
   return (
     <Routes>
       <Route path='login_landing_page' element={<Login_landing_page/>} />
@@ -24,7 +50,7 @@ const App = () => {
       <Route path='login' element={<Login/>} />
       <Route path='overview_payments' element={<Overview_payments/>} />
       <Route path='transaction' element={<Transactions/>} />
-      <Route path='/' element={<Sign_up/>} />
+      <Route path='/' element={<Sign_up handleSubmit = {handleSubmit} handleChange = {handleChange} formData = {formData}/>} />
     </Routes>
   )
 }
