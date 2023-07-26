@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaLock, FaMailBulk } from 'react-icons/fa';
-import logo from '../assets/logo.png';
 import { ResponsiveWrapper } from '../hoc';
 import useLogin from './useLogin'; // Import the custom hook
 
 
 const Login = () => {
+  const logo = process.env.PUBLIC_URL + '/assets/logo.png';
   const { formData, handleChange, handleSubmit } = useLogin(); // Use the custom hook to get the required props
   return (
     <div style={{ background: '#2A4454' }} className="h-screen">
