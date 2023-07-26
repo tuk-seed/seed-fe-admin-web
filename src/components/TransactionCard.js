@@ -17,23 +17,21 @@ const TransactionCard = ({ customerName, customerId, amount, date, time }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row flex-wrap bg-white rounded-lg border-b border-gray-300">
-      {/* Left section */}
-      <div className="md:w-1/2">
-        <h2 className="text-s font-semibold mb-2">{customerName}</h2>
-        <p className="text-gray-600">{customerId}</p>
-      </div>
+<div className='border flex flex-row'>
+    
+ <div className='flex flex-col px-[50px]'>
+ <h2 className="text-s font-semibold mb-0">{customerName}</h2>
+    <p className="text-gray-600 text-left">{customerId}</p>
+ </div>
+  
+  <div className='flex flex-col px-[50px] py-0'>
+  <p className="text-s font-semibold mb-0 text-right">-KSH{amount}</p>
+    <p className="text-gray-600">{formatDateAndTime()}</p>
+  </div>
 
-      {/* Right section */}
-      <div className="md:w-1/2 mt-5 md:mt-0 md:pl-6 md:order-last md:space-y-1">
-        <div>
-          <p className="text-s font-semibold mb-2">-KSH{amount}</p>
-        </div>
-        <div>
-          <p className="text-gray-600">{formatDateAndTime()}</p>
-        </div>
-      </div>
-    </div>
+</div>
+
+
   );
 };
 
