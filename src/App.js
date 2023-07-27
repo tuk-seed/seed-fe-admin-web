@@ -11,6 +11,11 @@ import Sign_up from './components/sign_up'
 import Overview_payments from './components/overview_payments'
 import Transactions from './components/transactions'
 
+import { UserData } from "./Data";
+
+
+
+
 
 const App = () => {
   return (
