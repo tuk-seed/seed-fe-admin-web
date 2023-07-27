@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ResponsiveWrapper } from '../hoc';
-// import LogoImage from './img/logo.png';
+
 
 // Spinner Component
 function Spinner() {
