@@ -1,14 +1,14 @@
 
 import { ResponsiveWrapper } from '../hoc';
 import { FaUser, FaLock, FaPhone, FaMailBulk, FaEyeSlash } from 'react-icons/fa';
-import logo from "../assets/logo.png"
+//import logo from "../assets/logo.png"--nimeweka hii picha kwa assets...adust the path please
 
 const sign_up = ({formData, handleChange, handleSubmit}) => {
   return (
     <div style={{background: '#2A4454'}}  className="h-screen">
     <div className="form-container">
       <div className='pt-16 pb-6 text-center cursor-pointer'>
-        <img src={logo} alt="" className='absolute p-4 top-0' />
+        <img src="" alt="" className='absolute p-4 top-0' />
         <h2 className='text-6xl text-white mt-10'>SignUp</h2>
       </div>
       
