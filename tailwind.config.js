@@ -38,16 +38,24 @@ module.exports = {
         350: '350px',
         620: '620px',
       },
+      fontFamily: {
+        roboto: ['Roboto'], 
+      },
       textColor: {
         lightGray: '#F1EFEE',
         primary: '#FAFAFA',
         secColor: '#efefef',
         navColor: '#BEBEBE',
+        greenText : '#76D32D',
       },
       backgroundColor: {
-        mainColor: '#FBF8F9',
-        secondaryColor: '#F0F0F0',
+
+        header:  '#2A4454',
+        // mainColor: '#FBF8F9',
+        mainColor: '#fefbfb',
+        secondaryColor: '#0088af',
         blackOverlay: 'rgba(0, 0 ,0 ,0.7)',
+        
       },
       keyframes: {
         'slide-in': {

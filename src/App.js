@@ -11,6 +11,11 @@ import Sign_up from './components/sign_up'
 import Overview_payments from './components/overview_payments'
 import Transactions from './components/transactions'
 
+import { UserData } from "./Data";
+
+
+
+
 
 const App = () => {
   return (
@@ -22,9 +27,9 @@ const App = () => {
       <Route path='home' element={<Home/>} />
       <Route path='inbox' element={<Inbox />} />
       <Route path='login' element={<Login/>} />
-      <Route path='overview_payments' element={<Overview_payments/>} />
+      <Route path='overview_payments' element={<Overview_payments />} />
       <Route path='transaction' element={<Transactions/>} />
-      <Route path='/' element={<Sign_up/>} />
+      <Route path='/' element={<Sign_up />} />
     </Routes>
   )
 }
