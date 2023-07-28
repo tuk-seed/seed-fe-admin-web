@@ -2,16 +2,31 @@ import React from 'react'
 import { ResponsiveWrapper } from '../hoc';
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
+import { Link } from 'react-router-dom';
 
 
-function overview_payments({chartData, overViewOnClick, msgOnClick}) {
+function overview_payments() {
+  const labels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Energy Analytics",
+        backgroundColor: "#ffbd59",
+        data: [2,8,14,34,18,16,12],
+       
+      }
+    ]
+  }
  
   return (
     <div>
       <div style = {{background: '#2A4454'}} className='py-6 text-center flex items-center justify-center mb-16 cursor-pointer'>
-        <div onClick={overViewOnClick} class=" w-[40px] h-[40px] rounded-full ring-2 ring-white mr-4 flex items-center justify-center cursor-pointer">
-          <span className='text-white font-bold text-3xl'>&#8592;</span>
-        </div>
+       <Link to= '/home'> 
+            <div  class=" w-[40px] h-[40px] rounded-full ring-2 ring-white mr-4 flex items-center justify-center cursor-pointer">
+              <span className='text-white font-bold text-3xl'>&#8592;</span>
+            </div>
+        </Link>
         <h1 className="text-white sm:text-3xl  md:text-4xl lg:text-5xl xl:text-5xl ">
           OVERVIEW PAYMENTS
         </h1>
@@ -27,7 +42,7 @@ function overview_payments({chartData, overViewOnClick, msgOnClick}) {
           <div className='w-[100%] flex-1 self-end pb-6'>
             <Bar
               className='h-96 lg:w-[800px] md:w-[400px] w-[300px]'
-              data={chartData}
+              data={data}
               options={{
                 responsive: true,
                 maintainAspectRatio: false,
@@ -84,12 +99,16 @@ function overview_payments({chartData, overViewOnClick, msgOnClick}) {
       </div>
 
       <div  style = {{background: '#2A4454'}} className='p-6 lg:px-14 md:px-16 text-center flex items-center justify-between cursor-pointer'>
-        <div onClick={overViewOnClick} class=" w-[50px] h-[50px] rounded-full mr-4 flex items-center justify-center bg-white p-2">
-          <span className='text-white font-bold text-3xl'>&#127968;</span>
-        </div>
-        <div onClick={msgOnClick} class=" w-[50px] h-[50px] rounded-full bg-white mr-4 flex items-center justify-center p-2">
-          <span className='text-white font-bold text-3xl'>&#128172;</span>
-        </div>
+       <Link to='/home'>
+        <div class=" w-[50px] h-[50px] rounded-full mr-4 flex items-center justify-center bg-white p-2">
+            <span className='text-white font-bold text-3xl'>&#127968;</span>
+          </div>
+       </Link>
+       <Link to='/inbox'>
+        <div class=" w-[50px] h-[50px] rounded-full bg-white mr-4 flex items-center justify-center p-2">
+            <span className='text-white font-bold text-3xl'>&#128172;</span>
+          </div>
+       </Link>
       </div>
      
     </div>
