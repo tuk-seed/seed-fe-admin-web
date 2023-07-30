@@ -5,6 +5,7 @@ import { ResponsiveWrapper } from '../hoc';
 import { Link } from 'react-router-dom';
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import { useRef, useEffect } from "react";
 
 const HorizontalCard = () => {
   return (
@@ -100,6 +101,18 @@ const EnergyAnalytics = () => {
       }
     ]
   }
+  const chartRef = useRef(null);
+  useEffect(() => {
+    if (chartRef.current) {
+      new Chart(chartRef.current, {
+        type: 'bar',
+        data: data,
+        options: {
+          // Add any chart options here if needed
+        }
+      });
+    }
+  }, []);
   return (
     <div className="flex bg-white shadow-lg rounded-lg overflow-hidden">
      
@@ -108,7 +121,8 @@ const EnergyAnalytics = () => {
           <h3 className="text-xl font-semibold mb-2 bg-secondaryColor">Energy <br/> Analytics</h3>      
         </div>
         <div>
-          <Bar data = {data} className='h-58'/>                   
+          <canvas ref={chartRef} height={200}/>
+          {/* <Bar data = {data} className='h-58'/>                    */}
         </div>
       </div>
     </div>
