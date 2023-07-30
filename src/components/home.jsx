@@ -104,8 +104,8 @@ const EnergyAnalytics = () => {
     <div className="flex bg-white shadow-lg rounded-lg overflow-hidden">
      
       <div className="p-2 flex-grow flex">
-        <div className="flex justify-between mb-3 bg-">
-        <h3 className="text-xl font-semibold mb-2 bg-secondaryColor">Energy <br/> Analytics</h3>      
+          <div className="flex justify-between mb-3 bg-">
+          <h3 className="text-xl font-semibold mb-2 bg-secondaryColor">Energy <br/> Analytics</h3>      
         </div>
         <div>
           <Bar data = {data} className='h-58'/>                   
