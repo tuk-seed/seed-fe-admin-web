@@ -66,7 +66,7 @@ const headerStyles = {
 };
 
 const listItemStyles = {
-  border: '1px solid #ccc',
+  borderBottom: '1px solid #ccc',
   marginBottom: '20px',
   padding: '20px',
 };
@@ -133,7 +133,7 @@ function inbox() {
   return (
     <div style={inboxStyles}>
       <div style={header}>
-      <Link to="/"><button style={previousButtonStyles}><FaArrowLeft /></button></Link>
+      <Link to="/transactions"><button style={previousButtonStyles}><FaArrowLeft /></button></Link>
         <h2 className="text-center text-white font-bold text-2xl" >INBOX</h2>
       </div>
       <ul>
