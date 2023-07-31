@@ -4,8 +4,9 @@ import { ResponsiveWrapper } from '../hoc';
 // imports
 import { Link } from 'react-router-dom';
 import Chart from "chart.js/auto";
-import { Bar } from "react-chartjs-2";
+// import { Bar } from "react-chartjs-2";
 import { useRef, useEffect } from "react";
+import Footer from './footer';
 
 const HorizontalCard = () => {
   return (
@@ -13,7 +14,7 @@ const HorizontalCard = () => {
       <div className="p-4 flex-grow">
         <div className="flex justify-between mb-3">
         <h3 className="text-xl font-semibold mb-2">CURRENT LOAD</h3>
-        <Link to="/" className='text-blue-500'>SEE ALL</Link>
+        <Link to="current_load" className='text-blue-500'>SEE ALL</Link>
         </div>
         <div className="flex justify-between mb-4">
           <div>
@@ -39,7 +40,7 @@ const CustomerQueue = () => {
       <div className="p-2 flex-grow">
         <div className="flex justify-between mb-3">
         <h3 className="text-xl font-semibold mb-2">CUSTOMER QUEUE</h3>
-        <Link to="/" className='text-blue-500'>SEE ALL</Link>
+        <Link to="customer_queue" className='text-blue-500'>SEE ALL</Link>
         </div>
         <div className="flex justify-between mb-4">
           <div>
@@ -159,6 +160,7 @@ function home() {
       <div className="card ">
         <EnergyAnalytics/>
       </div> 
+      <Footer />
     </div>
     
   )
