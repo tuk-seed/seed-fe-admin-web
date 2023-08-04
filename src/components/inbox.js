@@ -49,7 +49,7 @@ const header ={
   
 };
 const inboxStyles = {
-  maxWidth: '2000px',
+  maxWidth: '1000px',
   minWidth: '200px',
   margin: '0 auto',
   padding: '16px',
