@@ -1,10 +1,9 @@
-
+import React, { useState } from 'react';
 import { ResponsiveWrapper } from '../hoc';
 import { FaUser, FaLock, FaPhone, FaMailBulk, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-
-const sign_up = () => {
+const sign_up = ({formData, handleChange, handleSubmit}) => {
 
   const formDataRef = {
     fullName: '',
@@ -14,6 +13,29 @@ const sign_up = () => {
     confirmpwd: '',
   };
 
+  const [registrationResult, setRegistrationResult] = useState(null);
+
+  const handleRegistration = async () => {
+    if (formDataRef){
+      try{
+        const response = fetch('http://localhost:8080/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formDataRef),
+        });
+
+        const data = (await response).json();
+        setRegistrationResult(data.message);
+      } catch (err){
+        alert(err);
+      }
+    } else {
+      alert('Fill in all the fields');
+    }
+  }
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     formDataRef[name] = value;
@@ -23,6 +45,7 @@ const sign_up = () => {
     event.preventDefault();
     event.target.reset();
   };
+  
   return (
     <div style={{background: '#2A4454'}}  className="h-screen">
     <div className="form-container">
@@ -33,6 +56,7 @@ const sign_up = () => {
       
       <div className='w-[100%] h-[100%] bg-white p-6 rounded-t-3xl'>
         <form onSubmit={handleSubmit} className='mt-8 space-y-6'>
+
           <div className='grid grid-cols-1 gap-y-4'>
             <div className="sign_up relative lg:w-[50%] lg:relative lg:left-[25%]">
               <span
@@ -130,10 +154,14 @@ const sign_up = () => {
             </div>
             <div className="sign_up">
               <Link to="/login">
-              <button type="submit" style={{background: '#2A4454'}} className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Sign Up</button>
+              <button type="submit" 
+              onClick={handleRegistration}
+              style={{background: '#2A4454'}} 
+              className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Sign Up</button>
               </Link>
             </div>
 
+            {registrationResult && <p>{registrationResult}</p>}
             <div className='mt-3 text-center'>
               <p className='text-xl'>Already have an account? <span><Link to="/login"><a className='text-blue-600' href="#login">Login</a></Link></span></p>
             </div>
@@ -144,5 +172,5 @@ const sign_up = () => {
   </div>
   )
 }
-export default ResponsiveWrapper(sign_up);
+export default ResponsiveWrapper(Sign_up);
 
