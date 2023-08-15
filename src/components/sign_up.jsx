@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { ResponsiveWrapper } from '../hoc';
 import { FaUser, FaLock, FaPhone, FaMailBulk, FaEyeSlash } from 'react-icons/fa';
-//import logo from "../assets/logo.png"--nimeweka hii picha kwa assets...adust the path please
+import { Link } from 'react-router-dom';
 
-<<<<<<< Updated upstream
 const sign_up = ({formData, handleChange, handleSubmit}) => {
-=======
-
-const Sign_up = () => {
 
   const formDataRef = {
     fullName: '',
@@ -38,8 +34,8 @@ const Sign_up = () => {
     } else {
       alert('Fill in all the fields');
     }
-  };
-
+  }
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     formDataRef[name] = value;
@@ -49,14 +45,12 @@ const Sign_up = () => {
     event.preventDefault();
     event.target.reset();
   };
-
-
->>>>>>> Stashed changes
+  
   return (
     <div style={{background: '#2A4454'}}  className="h-screen">
     <div className="form-container">
       <div className='pt-16 pb-6 text-center cursor-pointer'>
-        <img src="" alt="" className='absolute p-4 top-0' />
+        <img src="./assets/logo.png" alt="" className='absolute p-4 top-0' />
         <h2 className='text-6xl text-white mt-10'>SignUp</h2>
       </div>
       
@@ -75,7 +69,6 @@ const Sign_up = () => {
                 name="fullName"
                 id="fullName"
                 placeholder="Full Name"
-                value={formData.fullName}
                 onChange={handleChange}
                 required
               />
@@ -91,7 +84,6 @@ const Sign_up = () => {
                 name="email"
                 id="email"
                 placeholder="Email"
-                value={formData.email}
                 onChange={handleChange}
                 required
               />
@@ -107,7 +99,6 @@ const Sign_up = () => {
                 name="email"
                 id="email"
                 placeholder="Mobile Number"
-                value={formData.email}
                 onChange={handleChange}
                 required
               />
@@ -126,7 +117,6 @@ const Sign_up = () => {
                 name="password"
                 id="password"
                 placeholder="Password"
-                value={formData.password}
                 onChange={handleChange}
                 required
               />
@@ -145,7 +135,6 @@ const Sign_up = () => {
                 name="confirmPassword"
                 id="confirmPassword"
                 placeholder="Confirm Password"
-                value={formData.confirmPassword}
                 onChange={handleChange}
                 required
               />
@@ -155,7 +144,6 @@ const Sign_up = () => {
                 className='h-4 w-4 text-indigo-600 focus:ring focus:ring-indigo-200 border-gray-300 rounded'
                   type="checkbox"
                   name="agreeToTerms"
-                  checked={formData.agreeToTerms}
                   onChange={handleChange}
                   required
                 />
@@ -165,21 +153,17 @@ const Sign_up = () => {
               </label>
             </div>
             <div className="sign_up">
-<<<<<<< Updated upstream
-              <button type="submit" style={{background: '#2A4454'}} className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Sign Up</button>
-=======
               <Link to="/login">
               <button type="submit" 
               onClick={handleRegistration}
               style={{background: '#2A4454'}} 
               className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Sign Up</button>
               </Link>
->>>>>>> Stashed changes
             </div>
 
             {registrationResult && <p>{registrationResult}</p>}
             <div className='mt-3 text-center'>
-              <p className='text-xl'>Already have an account? <span><a className='text-blue-600' href="#login">Login</a></span></p>
+              <p className='text-xl'>Already have an account? <span><Link to="/login"><a className='text-blue-600' href="#login">Login</a></Link></span></p>
             </div>
           </div>
         </form>

@@ -4,7 +4,9 @@ import { ResponsiveWrapper } from '../hoc';
 // imports
 import { Link } from 'react-router-dom';
 import Chart from "chart.js/auto";
-import { Bar } from "react-chartjs-2";
+// import { Bar } from "react-chartjs-2";
+import { useRef, useEffect } from "react";
+import Footer from './footer';
 
 const HorizontalCard = () => {
   return (
@@ -12,7 +14,7 @@ const HorizontalCard = () => {
       <div className="p-4 flex-grow">
         <div className="flex justify-between mb-3">
         <h3 className="text-xl font-semibold mb-2">CURRENT LOAD</h3>
-        <Link to="/" className='text-blue-500'>SEE ALL</Link>
+        <Link to="current_load" className='text-blue-500'>SEE ALL</Link>
         </div>
         <div className="flex justify-between mb-4">
           <div>
@@ -38,7 +40,7 @@ const CustomerQueue = () => {
       <div className="p-2 flex-grow">
         <div className="flex justify-between mb-3">
         <h3 className="text-xl font-semibold mb-2">CUSTOMER QUEUE</h3>
-        <Link to="/" className='text-blue-500'>SEE ALL</Link>
+        <Link to="customer_queue" className='text-blue-500'>SEE ALL</Link>
         </div>
         <div className="flex justify-between mb-4">
           <div>
@@ -100,15 +102,28 @@ const EnergyAnalytics = () => {
       }
     ]
   }
+  const chartRef = useRef(null);
+  useEffect(() => {
+    if (chartRef.current) {
+      new Chart(chartRef.current, {
+        type: 'bar',
+        data: data,
+        options: {
+          // Add any chart options here if needed
+        }
+      });
+    }
+  }, []);
   return (
     <div className="flex bg-white shadow-lg rounded-lg overflow-hidden">
      
       <div className="p-2 flex-grow flex">
-        <div className="flex justify-between mb-3 bg-">
-        <h3 className="text-xl font-semibold mb-2 bg-secondaryColor">Energy <br/> Analytics</h3>      
+          <div className="flex justify-between mb-3 bg-">
+          <h3 className="text-xl font-semibold mb-2 bg-secondaryColor">Energy <br/> Analytics</h3>      
         </div>
         <div>
-          <Bar data = {data} className='h-58'/>                   
+          <canvas ref={chartRef} height={200}/>
+          {/* <Bar data = {data} className='h-58'/>                    */}
         </div>
       </div>
     </div>
@@ -145,6 +160,7 @@ function home() {
       <div className="card ">
         <EnergyAnalytics/>
       </div> 
+      <Footer />
     </div>
     
   )
