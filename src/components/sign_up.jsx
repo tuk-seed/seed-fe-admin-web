@@ -3,7 +3,7 @@ import { ResponsiveWrapper } from '../hoc';
 import { FaUser, FaLock, FaPhone, FaMailBulk, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const sign_up = ({formData, handleChange, handleSubmit}) => {
+const Sign_up = () => {
 
   const formDataRef = {
     fullName: '',
@@ -173,4 +173,3 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
   )
 }
 export default ResponsiveWrapper(Sign_up);
-
