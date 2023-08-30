@@ -1,53 +1,53 @@
 import React from 'react';
+import { ResponsiveWrapper } from '../hoc';
+import { Link } from 'react-router-dom';
 
-const generateLoadElement = (device, owner, chargingPercentage, remainingChargingTime) => (
-  <div style={styles.payment}>
-    <div style={styles.paymentDetails}>
-      <div style={styles.nameRow}>
-        <span style={styles.label}>Device</span>
-        <span style={styles.value}>{device}</span>
-      </div>
-      <div style={styles.nameRow}>
-        <span style={styles.label}>Owner</span>
-        <span style={styles.value}>{owner}</span>
-      </div>
-      <div style={styles.nameRow}>
-        <span style={styles.label}>Charge Percentage</span>
-        <span style={{ ...styles.value, color: 'green' }}>{chargingPercentage}</span>
-      </div>
-      <div style={styles.nameRow}>
-        <span style={styles.label}>Remaining Charging Time</span>
-        <span style={styles.value}>{remainingChargingTime}</span>
-      </div>
-    </div>
-  </div>
-);
-
-const CurrentLoad = () => {
+const DeviceDetails = ({ name, owner, chargePercentage, remainingChargeTime }) => {
   return (
-    <div style={styles.body}>
-      <div style={styles.container}>
-        <header style={styles.header}>
-          <div style={styles.backArrowContainer}>
-            <a href="#" style={styles.backArrow}>&#8249;</a>
-          </div>
-          <h2 style={styles.headerTitle}>Current Load</h2>
-        </header>
-        <div style={styles.payments}>
-          {generateLoadElement("Samsung A10", "Brian Otieno", "28%", "02:24:06 hrs")}
-          {generateLoadElement("iPhone X", "Felix Omollo", "50%", "01:45:15 hrs")}
-          {generateLoadElement("OnePlus 9", "Frank Levy", "80%", "03:10:30 hrs")}
-          {generateLoadElement("Google Pixel", "Felix Otieno", "70%", "02:00:00 hrs")}
-          {generateLoadElement("Huawei P30", "Michael Felix", "90%", "04:30:45 hrs")}
-          {generateLoadElement("Xiaomi Mi 11", "Felix Okoth", "60%", "03:15:30 hrs")}
-        </div>
+    <div className='bg-white p-2 flex justify-between border-b border-black mb-2'>
+      <div className='text-left font-semibold'>
+        <p>NAME</p>
+        <p>OWNER</p>
+        <p>CHARGE PERCENTAGE</p>
+        <p>Remaining charge time</p>
+      </div>
+      <div className='text-right font-light'>
+        <p>{name}</p>
+        <p>{owner}</p>
+        <p>{chargePercentage}</p>
+        <p>{remainingChargeTime}</p>
       </div>
     </div>
   );
 };
 
-const styles = {
-  // (styles object remains unchanged)
-};
+function current_load() {
+  return (
+    <div className='bg-white'>
+      <div style={{ background: '#2A4454' }} className='relative py-6 text-center flex items-center justify-center mb-1 cursor-pointer'>
+        <Link to='/home' className='ml-12 absolute left-2'>
+          <div className="w-[40px] h-[40px] rounded-full ring-2 ring-white flex items-center justify-center cursor-pointer">
+            <span className='text-white font-bold text-3xl'>&#8592;</span>
+          </div>
+        </Link>
+        <h1 className="text-white text-3xl text-center">CURRENT LOAD</h1>
+      </div>
 
-export default CurrentLoad;
+      <div className='py-2 px-6'>
+        <DeviceDetails name="SAMSUNG A10" owner="BRIAN MUIGAI" chargePercentage="28%" remainingChargeTime="02:24:06 Hrs" />
+        {/* Other DeviceDetails components */}
+      </div>
+
+      <div style={{ background: '#2A4454' }} className='px-6 py-4 lg:px-14 md:px-16 text-center flex items-center justify-between cursor-pointer rounded-t-xl'>
+        <Link to='/home'>
+          <div className="w-[50px] h-[50px] rounded-full mr-4 flex items-center justify-center bg-white p-2">
+            <span className='text-white font-bold text-3xl'>&#127968;</span>
+          </div>
+        </Link>
+        {/* Other link icons */}
+      </div>
+    </div>
+  );
+}
+
+export default ResponsiveWrapper(current_load);
