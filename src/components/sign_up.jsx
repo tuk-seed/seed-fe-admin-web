@@ -1,19 +1,62 @@
-
+import React, { useState } from 'react';
 import { ResponsiveWrapper } from '../hoc';
 import { FaUser, FaLock, FaPhone, FaMailBulk, FaEyeSlash } from 'react-icons/fa';
-//import logo from "../assets/logo.png"--nimeweka hii picha kwa assets...adust the path please
+import { Link } from 'react-router-dom';
 
-const sign_up = ({formData, handleChange, handleSubmit}) => {
+const Sign_up = () => {
+
+  const formDataRef = {
+    fullName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmpwd: '',
+  };
+
+  const [registrationResult, setRegistrationResult] = useState(null);
+
+  const handleRegistration = async () => {
+    if (formDataRef){
+      try{
+        const response = fetch('http://localhost:8080/api/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formDataRef),
+        });
+
+        const data = (await response).json();
+        setRegistrationResult(data.message);
+      } catch (err){
+        alert(err);
+      }
+    } else {
+      alert('Fill in all the fields');
+    }
+  }
+  
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    formDataRef[name] = value;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.target.reset();
+  };
+  
   return (
     <div style={{background: '#2A4454'}}  className="h-screen">
     <div className="form-container">
       <div className='pt-16 pb-6 text-center cursor-pointer'>
-        <img src="" alt="" className='absolute p-4 top-0' />
+        <img src="./assets/logo.png" alt="" className='absolute p-4 top-0' />
         <h2 className='text-6xl text-white mt-10'>SignUp</h2>
       </div>
       
       <div className='w-[100%] h-[100%] bg-white p-6 rounded-t-3xl'>
         <form onSubmit={handleSubmit} className='mt-8 space-y-6'>
+
           <div className='grid grid-cols-1 gap-y-4'>
             <div className="sign_up relative lg:w-[50%] lg:relative lg:left-[25%]">
               <span
@@ -26,7 +69,6 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
                 name="fullName"
                 id="fullName"
                 placeholder="Full Name"
-                value={formData.fullName}
                 onChange={handleChange}
                 required
               />
@@ -42,7 +84,6 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
                 name="email"
                 id="email"
                 placeholder="Email"
-                value={formData.email}
                 onChange={handleChange}
                 required
               />
@@ -58,7 +99,6 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
                 name="email"
                 id="email"
                 placeholder="Mobile Number"
-                value={formData.email}
                 onChange={handleChange}
                 required
               />
@@ -77,7 +117,6 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
                 name="password"
                 id="password"
                 placeholder="Password"
-                value={formData.password}
                 onChange={handleChange}
                 required
               />
@@ -96,7 +135,6 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
                 name="confirmPassword"
                 id="confirmPassword"
                 placeholder="Confirm Password"
-                value={formData.confirmPassword}
                 onChange={handleChange}
                 required
               />
@@ -106,7 +144,6 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
                 className='h-4 w-4 text-indigo-600 focus:ring focus:ring-indigo-200 border-gray-300 rounded'
                   type="checkbox"
                   name="agreeToTerms"
-                  checked={formData.agreeToTerms}
                   onChange={handleChange}
                   required
                 />
@@ -116,11 +153,17 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
               </label>
             </div>
             <div className="sign_up">
-              <button type="submit" style={{background: '#2A4454'}} className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Sign Up</button>
+              <Link to="/login">
+              <button type="submit" 
+              onClick={handleRegistration}
+              style={{background: '#2A4454'}} 
+              className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Sign Up</button>
+              </Link>
             </div>
 
+            {registrationResult && <p>{registrationResult}</p>}
             <div className='mt-3 text-center'>
-              <p className='text-xl'>Already have an account? <span><a className='text-blue-600' href="#login">Login</a></span></p>
+              <p className='text-xl'>Already have an account? <span><Link to="/login"><a className='text-blue-600' href="#login">Login</a></Link></span></p>
             </div>
           </div>
         </form>
@@ -129,5 +172,4 @@ const sign_up = ({formData, handleChange, handleSubmit}) => {
   </div>
   )
 }
-export default ResponsiveWrapper(sign_up);
-
+export default ResponsiveWrapper(Sign_up);

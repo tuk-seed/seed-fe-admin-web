@@ -1,13 +1,158 @@
 import React from 'react'
 import { ResponsiveWrapper } from '../hoc';
+import { FaHome, FaMoneyBill } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+
+
+const messages = [
+  {
+    id: 1,
+    name: 'BRIAN M.',
+    content: 'Good evening. I would like to request for a slot to change my car battery. is one available at the moment?',
+    date: '2023-07-23',
+  },
+  
+  {
+    id: 1,
+    name: 'BRIAN M.',
+    content: 'Good evening. I would like to request for a slot to change my car battery. is one available at the moment?',
+    date: '2023-07-23',
+  },
+
+  {
+    id: 1,
+    name: 'BRIAN M.',
+    content: 'Good evening. I would like to request for a slot to change my car battery. is one available at the moment?',
+    date: '2023-07-23',
+  },
+
+  {
+    id: 1,
+    name: 'BRIAN M.',
+    content: 'Good evening. I would like to request for a slot to change my car battery. is one available at the moment?',
+    date: '2023-07-23',
+  },
+
+  {
+    id: 1,
+    name: 'BRIAN M.',
+    content: 'Good evening. I would like to request for a slot to change my car battery. is one available at the moment?',
+    date: '2023-07-23',
+  },
+];
+
+const header ={
+  backgroundColor: '#2A4454',
+  padding: '10px',
+  
+};
+const inboxStyles = {
+  maxWidth: '1000px',
+  minWidth: '200px',
+  margin: '0 auto',
+  padding: '16px',
+  
+
+};
+
+const headerStyles = {
+  marginBottom: '20px',
+  color: 'white'
+  
+  
+  
+};
+
+const listItemStyles = {
+  borderBottom: '1px solid #ccc',
+  marginBottom: '20px',
+  padding: '20px',
+};
+
+const messageHeaderStyles = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  fontWeight: 'bold',
+  marginBottom: '10px',
+};
+
+const nameStyles = {
+  color: 'black',
+};
+
+const dateStyles = {
+  color: '#888',
+};
+
+const contentStyles = {
+  color: '#333',
+};
+
+const previousButtonStyles = {
+  color: '#fff',
+  padding: '10px 20px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  fontSize: '16px',
+  marginTop: '20px',
+};
+
+const bottomButtonsStyles = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginTop: '30px',
+  backgroundColor: ' #2A4454',
+  padding: '10px'
+  
+};
+
+const homeButtonStyles = {
+  color: 'black',
+  backgroundColor: 'white',
+  padding: '10px 20px',
+  border: 'none',
+  borderRadius: '70px',
+  cursor: 'pointer',
+  fontSize: '25px',
+};
+
+const transactionButtonStyles = {
+  color: 'black',
+  backgroundColor: 'white',
+  padding: '10px 20px',
+  border: 'none',
+  borderRadius: '70px',
+  cursor: 'pointer',
+  fontSize: '25px',
+};
 
 function inbox() {
   return (
-    <h1 className="text-3xl font-bold">
-      This is how you can use the .env file in your React js project.
-
-Now suppose you are working on a large scale project where you need to use separate custom variables for development and production. For example, you have a test API link for development and a live API link for production and you don’t want to manually change that in each file. So there is a built-in environment variable called NODE_ENV. If we writeprocess.env.NODE_ENV and start the server npm start it will print the mode you are currently working on. It will print development for npm start, production for npm build, and test for npm test.
-    </h1>
+    <div style={inboxStyles}>
+      <div style={header}>
+      <Link to="/transaction"><button style={previousButtonStyles}><FaArrowLeft /></button></Link>
+        <h2 className="text-center text-white font-bold text-2xl" >INBOX</h2>
+      </div>
+      <ul>
+        {messages.map((message) => (
+          <li key={message.id} style={listItemStyles}>
+            <div style={messageHeaderStyles}>
+              <span style={nameStyles}>{message.name}</span>
+              <span style={dateStyles}>{message.date}</span>
+            </div>
+            <div style={contentStyles}>{message.content}</div>
+          </li>
+        ))}
+      </ul>
+      
+      <div style={bottomButtonsStyles}>
+      <Link to="/home"><button style={homeButtonStyles}><FaHome /></button></Link>
+      <Link to="/transaction"><button style={transactionButtonStyles}><FaMoneyBill /></button></Link>
+      </div>
+    </div>
   )
 }
 
