@@ -21,7 +21,7 @@ const DeviceDetails = ({ name, owner, chargePercentage, remainingChargeTime }) =
   );
 };
 
-function current_load() {
+const CurrentLoad = () => {
   return (
     <div className='bg-white'>
       <div style={{ background: '#2A4454' }} className='relative py-6 text-center flex items-center justify-center mb-1 cursor-pointer'>
@@ -35,7 +35,12 @@ function current_load() {
 
       <div className='py-2 px-6'>
         <DeviceDetails name="SAMSUNG A10" owner="BRIAN MUIGAI" chargePercentage="28%" remainingChargeTime="02:24:06 Hrs" />
-      
+        <DeviceDetails name="INFINIX HOT 9" owner="LEVY ONGULO" chargePercentage="57%" remainingChargeTime="01:01:35 Hrs" />
+        <DeviceDetails name="IPHONE 6S" owner="JOEL ZADOCK" chargePercentage="5%" remainingChargeTime="02:30:50 Hrs" />
+        <DeviceDetails name="TECNO SPARK8" owner="HENRY OUMA" chargePercentage="12%" remainingChargeTime="02:25:16 Hrs" />
+        <DeviceDetails name="HUAWEI H9" owner="COLETA JUMA" chargePercentage="68%" remainingChargeTime="00:45:39 Hrs" />
+        <DeviceDetails name="ONE PLUS 9" owner="RANDY MORISSON" chargePercentage="90%" remainingChargeTime="00:10:26 Hrs" />
+        <DeviceDetails name="GOOGLE PIXEL" owner="MARION MBOSHA" chargePercentage="45%" remainingChargeTime="00:55:43 Hrs" />
       </div>
 
       <div style={{ background: '#2A4454' }} className='px-6 py-4 lg:px-14 md:px-16 text-center flex items-center justify-between cursor-pointer rounded-t-xl'>
@@ -44,10 +49,9 @@ function current_load() {
             <span className='text-white font-bold text-3xl'>&#127968;</span>
           </div>
         </Link>
-    
       </div>
     </div>
   );
-}
+};
 
-export default ResponsiveWrapper(current_load);
+export default ResponsiveWrapper(CurrentLoad); 
