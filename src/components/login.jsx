@@ -1,12 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FaLock, FaMailBulk } from 'react-icons/fa';
 import { ResponsiveWrapper } from '../hoc';
 import useLogin from './useLogin'; // Import the custom hook
 
-
 const Login = () => {
   const logo = process.env.PUBLIC_URL + '/assets/logo.png';
-  const { formData, handleChange, handleSubmit } = useLogin(); // Use the custom hook to get the required props
+  const [responseMessage, setResponseMessage] = useState('')
+  const [isError, setIsError] = useState('')
+
+  const { formData, handleChange} = useLogin(); // Use the custom hook to get the required props
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const response = await fetch('http://localhost:8080/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+    
+        const data = await response.json();
+    
+        if (response.ok) {
+          setResponseMessage(data.message);
+          setIsError(false);
+        } else {
+          setResponseMessage(data.message);
+          setIsError(true);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setResponseMessage('An error occurred');
+        setIsError(true);
+      };
+    };
+
   return (
     <div style={{ background: '#2A4454' }} className="h-screen">
       <div className="form-container">
@@ -75,6 +106,7 @@ const Login = () => {
             </div>
             </div>
           </form>
+          {responseMessage && <p className={isError ? 'error' : 'success'}>{responseMessage}</p>}
         </div>
       </div>
     </div>

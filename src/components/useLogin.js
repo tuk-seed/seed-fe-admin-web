@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const useLogin = () => {
 const [formData, setFormData] = useState({
     email: '',
     password: '',
 });
+const [responseMessage, setResponseMessage] = useState('')
+const [isError, setIsError] = useState('')
 
 const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,13 +16,9 @@ const handleChange = (e) => {
     }));
 };
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    // Implement your login logic here, e.g., send login data to the server
-    console.log(formData);
-};
 
-return { formData, handleChange, handleSubmit };
+
+return { formData, handleChange};
 };
 
 export default useLogin;
