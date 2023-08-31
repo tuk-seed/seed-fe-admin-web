@@ -1,15 +1,20 @@
-import React, {useState} from 'react';
-import { FaLock, FaMailBulk } from 'react-icons/fa';
-import { ResponsiveWrapper } from '../hoc';
+import React, { useState } from 'react';
+import { FaEyeSlash, FaLock, FaMailBulk } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { ResponsiveWrapper } from '../hoc';
+
+
 import useLogin from './useLogin'; // Import the custom hook
 
 const Login = () => {
   const logo = process.env.PUBLIC_URL + '/assets/logo.png';
   const [responseMessage, setResponseMessage] = useState('')
   const [isError, setIsError] = useState('')
-
+  const [showPassword, setShowPassword] = useState(false);
   const { formData, handleChange} = useLogin(); // Use the custom hook to get the required props
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +48,10 @@ const Login = () => {
     <div style={{ background: '#2A4454' }} className="h-screen">
       <div className="form-container">
         <div className='pt-16 pb-6 text-center cursor-pointer'>
-          <img src={logo} alt="" className='absolute p-4 top-0' />
+          
+          <a href="/login_landing">
+            <img src={logo} alt="" className='absolute p-4 top-0' />
+          </a>
           <h2 className='text-6xl text-white mt-10'>Login</h2>
         </div>
 
@@ -64,12 +72,13 @@ const Login = () => {
                   required
                 />
               </div>
-              <div className="sign_up relative lg:w-[50%] lg:relative lg:left-[25%]">
+               {/* Password input field with show/hide password toggle */}
+               <div className="sign_up relative lg:w-[50%] lg:relative lg:left-[25%]">
                 <span className='absolute top-5 left-4 text-3xl '><FaLock /></span>
                 <input
                   style={{ background: '#D9D9D9' }}
                   className='pl-16 placeholder-shown:font-semibold placeholder:text-black mt-1 p-4 block w-full border rounded-3xl shadow-sm focus:ring focus:ring-opacity-50 focus:ring-indigo-500 focus:border-indigo-500'
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   id="password"
                   placeholder="example123@"
@@ -77,34 +86,24 @@ const Login = () => {
                   onChange={handleChange}
                   required
                 />
+                <span className='absolute top-5 right-4 text-3xl cursor-pointer' onClick={toggleShowPassword}>
+                  <FaEyeSlash />
+                </span>
               </div>
               
-             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <p className='text-xl'>
-                <Link to="/forgot_password" className='text-blue-600' >
-        Forgot Password
-      </Link>
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <p className='text-xl'>
+                  <Link to="/forgot_password" className='text-blue-600 underline'>
+                    Forgot Password?
+                  </Link>
                 </p>
               </div>
-
-              <div style={{ background: '#D9D9D9' }} className="mt-16 mb-4 p-4 flex items-center border-solid  rounded-3xl flex justify-center lg:w-[50%] lg:relative lg:left-[25%]">
-                <input
-                  className='h-4 w-4 text-indigo-600 focus:ring focus:ring-indigo-200 border-gray-300 rounded'
-                  type="checkbox"
-                  name="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleChange}
-                />
-                <label className="terms-label ml-8 block font-semibold text-lg text-gray-700">
-                  Remember Me
-                </label>
-              </div>
-
+              <div className="mt-12"></div>
               <div className="sign_up">
                 <button type="submit" style={{ background: '#2A4454' }} className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Login</button>
               </div>
 
-             <div className='mt-3 text-center'>
+              <div className='mt-3 text-center'>
               <p className='text-xl'>
                 Are you a new User?{' '}
                 <Link to="/sign_up" className='text-blue-600'>
