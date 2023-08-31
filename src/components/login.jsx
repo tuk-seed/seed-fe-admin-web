@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { FaLock, FaMailBulk } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { ResponsiveWrapper } from '../hoc';
 import useLogin from './useLogin'; // Import the custom hook
 
@@ -80,10 +81,11 @@ const Login = () => {
               
               <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <p className='text-xl'>
-                <span><a className='text-blue-600' href="#forgot_password">Forgot Password</a></span>
+                <Link to="/forgot_password" className='text-blue-600' >
+        Forgot Password
+      </Link>
                 </p>
               </div>
-
               <div style={{ background: '#D9D9D9' }} className="mt-16 mb-4 p-4 flex items-center border-solid  rounded-3xl flex justify-center lg:w-[50%] lg:relative lg:left-[25%]">
                 <input
                   className='h-4 w-4 text-indigo-600 focus:ring focus:ring-indigo-200 border-gray-300 rounded'
@@ -94,15 +96,18 @@ const Login = () => {
                 />
                 <label className="terms-label ml-8 block font-semibold text-lg text-gray-700">
                   Remember Me
-                </label>
+                  </label>
               </div>
-
               <div className="sign_up">
                 <button type="submit" style={{ background: '#2A4454' }} className='w-full p-4 text-white rounded-3xl hover:bg-indigo-600 transition-all duration-300 font-bold text-2xl lg:w-[50%] lg:relative lg:left-[25%]'>Login</button>
               </div>
-
               <div className='mt-3 text-center'>
-              <p className='text-xl'>Are you a new User? <span><a className='text-blue-600' href="#sign_up">Sign Up</a></span></p>
+              <p className='text-xl'>
+                Are you a new User?{' '}
+                <Link to="/sign_up" className='text-blue-600'>
+                Sign Up
+                </Link>
+              </p>
             </div>
             </div>
           </form>
