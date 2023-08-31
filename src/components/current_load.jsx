@@ -35,7 +35,7 @@ function current_load() {
 
       <div className='py-2 px-6'>
         <DeviceDetails name="SAMSUNG A10" owner="BRIAN MUIGAI" chargePercentage="28%" remainingChargeTime="02:24:06 Hrs" />
-        {/* Other DeviceDetails components */}
+      
       </div>
 
       <div style={{ background: '#2A4454' }} className='px-6 py-4 lg:px-14 md:px-16 text-center flex items-center justify-between cursor-pointer rounded-t-xl'>
@@ -44,7 +44,7 @@ function current_load() {
             <span className='text-white font-bold text-3xl'>&#127968;</span>
           </div>
         </Link>
-        {/* Other link icons */}
+    
       </div>
     </div>
   );
