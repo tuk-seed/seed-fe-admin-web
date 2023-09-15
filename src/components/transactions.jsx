@@ -97,12 +97,15 @@ function Transactions() {
 
   return (
     <div className='Body'>
-      <div className='flex justify-center items-center bg-cyan-900 p-6 fixed top-0 w-full z-10'>
-      <Link to="/home" className='text-white'> <img src="./assets/image 19.png"/>  </Link>
-        <h1 className="text-2xl font-small mx-8 text-white">TRANSACTIONS</h1>
-      </div>
+      
+      <div className='flex justify-center  bg-cyan-900 p-6 fixed top-0 w-full z-10'>
+      <Link to="/home" className='text-white absulute left-2'> <img src="./assets/image 19.png"/>  </Link>
+        <h1 className="text-2xl font-small items-center mx-8 text-white">
+          TRANSACTIONS
+          </h1>
+         </div>
 
-      <div className="container mx-auto mt-20 px-4 md:px-8 whitespace-nowrap">
+        <div className="container mx-auto mt-20 px-4 md:px-8 whitespace-nowrap">
         {transactions.map((transaction, index) => (
           <TransactionCard key={index} {...transaction} />
         ))}
